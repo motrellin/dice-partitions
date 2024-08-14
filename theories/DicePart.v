@@ -406,3 +406,35 @@ Proof.
   -
     exact H2.
 Qed.
+
+Corollary partitions_too_big_sum :
+  forall w s,
+    6 * w < s ->
+    partitions w s = nil.
+Proof.
+  intros w s H1.
+  destruct (destruct_list (partitions w s)) as [[ns [nss H2]]|H2].
+  -
+    exfalso.
+    assert (H3 : In ns (partitions w s)). rewrite H2; left; reflexivity.
+    apply partitions_correct_length in H3 as H4.
+    apply partitions_correct_sum in H3 as H5.
+    pose proof (partitions_correct_elements w s ns H3) as H6.
+    subst w s.
+    clear H2 H3 nss.
+    induction ns as [|n ns' IH].
+    +
+      simpl in *.
+      lia.
+    +
+      apply IH.
+      *
+        specialize (H6 n (in_eq n ns')) as H7.
+        simpl in H1; lia.
+      *
+        intros n' H8.
+        apply H6.
+        right; exact H8.
+  -
+    exact H2.
+Qed.
