@@ -1,5 +1,15 @@
 # Changelog
 
+## dicepart-v1.0.1 (2024-08-14)
+
+### New
+
+* Create LICENSE. [Max Ole Elliger]
+
+  BSD 3-Clause License
+
+* Added a CHANGELOG.md. [Max Ole Elliger]
+
 ## dicepart-v1.0.0 (2024-08-14)
 
 ### New
