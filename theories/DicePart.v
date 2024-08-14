@@ -163,6 +163,65 @@ Proof.
     exact H2.
 Qed.
 
+Theorem partitions_correct_elements :
+  forall w s ns,
+    In ns (partitions w s) ->
+    forall n,
+      In n ns ->
+      1 <= n <= 6.
+Proof.
+  intros w s ns H1 n1 H2.
+  funelim (partitions w s).
+  -
+    rewrite partitions_equation_1 in H1.
+    destruct H1 as [H1|H1]; [subst ns; contradiction | contradiction].
+  -
+    rewrite partitions_equation_2 in H1.
+    contradiction.
+  -
+    rewrite partitions_equation_3 in H1.
+    contradiction.
+  -
+    rewrite partitions_equation_4 in H1.
+    destruct H1 as [H1|H1]; [subst ns | contradiction].
+    destruct H2 as [H2|H2]; [subst n1; lia | contradiction].
+  -
+    rewrite partitions_equation_5 in H1.
+    destruct H1 as [H1|H1]; [subst ns | contradiction].
+    destruct H2 as [H2|H2]; [subst n1; lia | contradiction].
+  -
+    rewrite partitions_equation_6 in H1.
+    destruct H1 as [H1|H1]; [subst ns | contradiction].
+    destruct H2 as [H2|H2]; [subst n1; lia | contradiction].
+  -
+    rewrite partitions_equation_7 in H1.
+    destruct H1 as [H1|H1]; [subst ns | contradiction].
+    destruct H2 as [H2|H2]; [subst n1; lia | contradiction].
+  -
+    rewrite partitions_equation_8 in H1.
+    destruct H1 as [H1|H1]; [subst ns | contradiction].
+    destruct H2 as [H2|H2]; [subst n1; lia | contradiction].
+  -
+    rewrite partitions_equation_9 in H1.
+    destruct H1 as [H1|H1]; [subst ns | contradiction].
+    destruct H2 as [H2|H2]; [subst n1; lia | contradiction].
+  -
+    rewrite partitions_equation_10 in H1.
+    contradiction.
+  -
+    simpl in *.
+    rewrite <- Heqcall in H1.
+    clear Heqcall.
+    repeat apply in_app_or in H1 as [H1|H1].
+    all: try contradiction.
+    all: apply in_map_iff in H1 as [ns' [H1 H3]].
+    all: subst ns.
+    all: simpl in *.
+    all: destruct H2 as [H2|H2].
+    all: try lia.
+    all: eauto.
+Qed.
+
 Theorem correct_partitions :
   forall ns,
     (forall n, In n ns -> 1 <= n /\ n <= 6) ->
