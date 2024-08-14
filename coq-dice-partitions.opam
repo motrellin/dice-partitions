@@ -1,0 +1,31 @@
+# This file was generated from `meta.yml`, please do not edit manually.
+# Follow the instructions on https://github.com/coq-community/templates to regenerate.
+
+opam-version: "2.0"
+maintainer: "ole.elliger@fau.de"
+version: "dev"
+
+homepage: "https://github.com/motrellin/dice-partitions"
+dev-repo: "git+https://github.com/motrellin/dice-partitions.git"
+bug-reports: "https://github.com/motrellin/dice-partitions/issues"
+doc: "https://motrellin.github.io/dice-partitions/"
+license: "BSD-3-Clause"
+
+synopsis: "A program to find all possibilities, how to roll w dices to get a total sum of s"
+description: """
+A program to find all possibilities, how to roll w dices to get a total sum of s.
+"""
+
+build: [make "-j%{jobs}%" "all"]
+install: [make "install"]
+depends: [
+  "coq" { "8.19" }
+  "coq-equations"
+]
+
+tags: [
+  "logpath:DicePart"
+]
+authors: [
+  "Max Ole Elliger <ole.elliger@fau.de>"
+]
